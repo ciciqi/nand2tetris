@@ -1,0 +1,15 @@
+/**
+* 16-bit left shifter
+**/
+
+CHIP ShiftL16 {
+    IN a[16], b[16];
+    OUT out[16];
+
+    PARTS:
+    Mux16(a=a, b[0]=false, b[1..15]=a[0..14], sel=b[0], out=in1, out[0..13]=s2);
+    Mux16(a=in1, b[0..1]=false, b[2..15]=s2, sel=b[1], out=in2, out[0..11]=s4);
+    Mux16(a=in2, b[0..3]=false, b[4..15]=s4, sel=b[2], out=in3, out[0..7]=s8);
+    Mux16(a=in3, b[0..7]=false, b[8..15]=s8, sel=b[3], out=in4);
+    Mux16(a=in4, b=false, sel=b[4], out=out);
+}
