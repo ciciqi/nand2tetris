@@ -1,0 +1,1 @@
+- Why this CPU can complete an instruction only in one cycle?
